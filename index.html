@@ -1,113 +1,586 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login - Lapburn Spanaxeess</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <title>Lapburn Spanaxeess</title>
 
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: linear-gradient(135deg, #0f3d2e 0%, #1f6b45 45%, #2e8b57 100%);
-      color: #f5f5f5;
-      text-align: center;
-      padding: 40px 20px;
-      min-height: 100vh;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    .card {
-      background: rgba(255, 255, 255, 0.96);
-      border: 1px solid #f2c94c;
-      border-radius: 24px;
-      width: 100%;
-      max-width: 400px;
-      padding: 32px 28px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
-      color: #2f2f2f;
-    }
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #111827 0%, #1f2937 45%, #374151 100%);
+            color: #f7f7f2;
+            text-align: center;
+            padding: 40px 20px 60px;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-    h1 {
-      font-size: 32px;
-      margin: 0 0 10px;
-      color: #b88a00;
-    }
+        h1 {
+            font-size: 44px;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            color: #f4d35e;
+            font-weight: 800;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
 
-    p {
-      color: #666;
-      margin-bottom: 20px;
-    }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e5c24b;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 420px;
+            margin: 18px auto;
+            padding: 22px 24px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+            color: #2d2d2d;
+            opacity: 0;
+            transform: translate3d(0, 22px, 0) scale(0.985);
+            transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: opacity, transform;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
 
-    input {
-      width: 100%;
-      padding: 13px 14px;
-      margin: 10px 0;
-      border-radius: 12px;
-      border: 1px solid #d0d0d0;
-      background: #fafafa;
-      font-size: 15px;
-    }
+        .card.show {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
 
-    button {
-      margin-top: 16px;
-      padding: 12px 24px;
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(135deg, #f2c94c, #e0b31f);
-      color: #2f2f2f;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 6px 14px rgba(226, 179, 30, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+        .card {
+            cursor: pointer;
+        }
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(226, 179, 30, 0.3);
-    }
-  </style>
+        .card:hover {
+            transform: translate3d(0, -3px, 0) scale(1);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+            border-color: #f4d35e;
+        }
+
+        .card h2 {
+            margin-bottom: 6px;
+            font-size: 24px;
+            color: #333333;
+        }
+
+        .role {
+            color: #b8860b;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .bio {
+            margin-top: 10px;
+            color: #666666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        button {
+            margin-top: 24px;
+            padding: 11px 22px;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(135deg, #f4d35e, #e0b31f);
+            color: #2a2a2a;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(224, 179, 31, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(224, 179, 31, 0.25);
+            filter: brightness(1.03);
+        }
+
+        .editor-card {
+            background: rgba(255, 255, 255, 0.97);
+            border: 1px solid #e5c24b;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 520px;
+            margin: 20px auto 28px;
+            padding: 22px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+            color: #2f2f2f;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .editor-card h3 {
+            margin-top: 0;
+            color: #b8860b;
+        }
+
+        .editor-card input,
+        .editor-card textarea {
+            width: 100%;
+            padding: 10px 12px;
+            margin: 8px 0 12px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .editor-card textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .editor-card .row {
+            margin-bottom: 12px;
+        }
+
+        .editor-card .add-btn {
+            margin-top: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+        }
+
+        .editor-card .delete-btn {
+            margin: 4px 0 12px;
+            padding: 8px 12px;
+            font-size: 13px;
+            background: #555;
+            color: white;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.97);
+            border: 1px solid #e5c24b;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 480px;
+            margin: 20px auto 28px;
+            padding: 28px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+            color: #2f2f2f;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+    </style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Secure Access</h1>
-    <p>Please log in to view the confidential page.</p>
-    <form id="loginForm">
-      <input type="text" id="username" placeholder="Username" required />
-      <input type="password" id="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
-  </div>
 
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+<h1 id="pageTitle">Lapburn Spanaxeess</h1>
+<div id="syncStatus" style="margin: 0 auto 16px; max-width: 560px; padding: 10px 14px; border-radius: 999px; background: rgba(255,255,255,0.12); color: #f7f7f2; font-size: 14px;">Checking shared storage…</div>
 
-      if (username === "admin" && password === "82224") {
-        localStorage.setItem("loggedIn", "true");
-        localStorage.setItem("userRole", "admin");
-        window.location.href = "secret.html";
-      } else if (username === "edit" && password === "thispage") {
-        localStorage.setItem("loggedIn", "true");
-        localStorage.setItem("userRole", "editor");
-        window.location.href = "secret.html";
-      } else {
-        alert("Wrong username or password!");
-      }
+<div id="editorPanel" class="editor-card hidden">
+    <h3>Edit Directory</h3>
+    <label>Page Title</label>
+    <input id="titleInput" type="text" placeholder="Page title" />
+    <div id="peopleEditor"></div>
+    <button type="button" class="add-btn" id="addPersonBtn">Add one more employee</button>
+    <button type="button" id="saveBtn">Save Changes</button>
+</div>
+
+<div id="directoryView">
+    <div id="directoryList"></div>
+</div>
+
+<div id="profileView" class="hidden">
+    <div class="profile-card">
+        <h2 id="profileName"></h2>
+        <div id="profileRole" class="role"></div>
+        <div id="profileBio" class="bio"></div>
+        <button type="button" id="homeBtn">Home</button>
+    </div>
+</div>
+
+<button onclick="logout()">Logout</button>
+
+<script>
+window.SHARED_BLOB_URL = "https://jsonblob.com/api/jsonBlob/019fbe46-9874-702d-94d3-ec49eacaec86";
+const SHARED_BLOB_KEY = "lapburn_shared_blob_url";
+const SHARED_BLOB_CREATE_URL = "https://jsonblob.com/api/jsonBlob";
+
+if (localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "index.html";
+}
+
+const userRole = localStorage.getItem("userRole") || "viewer";
+const editorPanel = document.getElementById("editorPanel");
+const pageTitle = document.getElementById("pageTitle");
+const titleInput = document.getElementById("titleInput");
+const peopleEditor = document.getElementById("peopleEditor");
+const directoryList = document.getElementById("directoryList");
+const directoryView = document.getElementById("directoryView");
+const profileView = document.getElementById("profileView");
+const profileName = document.getElementById("profileName");
+const profileRole = document.getElementById("profileRole");
+const profileBio = document.getElementById("profileBio");
+const saveBtn = document.getElementById("saveBtn");
+const addPersonBtn = document.getElementById("addPersonBtn");
+const homeBtn = document.getElementById("homeBtn");
+const syncStatus = document.getElementById("syncStatus");
+const landingPage = "index.html";
+
+let ticking = false;
+let currentDirectoryData = null;
+const DEVICE_AUTH_KEY = "lapburn_owner_device";
+const DEVICE_AUTH_VALUE = "owner-device-v1";
+
+function isDeviceAuthorized() {
+    return localStorage.getItem(DEVICE_AUTH_KEY) === DEVICE_AUTH_VALUE;
+}
+
+function authorizeCurrentDevice() {
+    localStorage.setItem(DEVICE_AUTH_KEY, DEVICE_AUTH_VALUE);
+    return true;
+}
+
+function setSyncStatus(message, tone = "info") {
+    if (!syncStatus) return;
+
+    syncStatus.textContent = message;
+    syncStatus.style.background = tone === "error"
+        ? "rgba(220, 38, 38, 0.2)"
+        : tone === "success"
+            ? "rgba(22, 163, 74, 0.22)"
+            : "rgba(255,255,255,0.12)";
+    syncStatus.style.color = tone === "error" ? "#fecaca" : "#f7f7f2";
+}
+
+function initRemoteStorage() {
+    return Boolean(window.SHARED_BLOB_URL);
+}
+
+initRemoteStorage();
+
+function revealCards() {
+    const cards = document.querySelectorAll('.card');
+    const startLine = window.innerHeight * 0.9;
+    const endLine = window.innerHeight * 0.12;
+
+    cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        const inView = rect.top < startLine && rect.bottom > endLine;
+
+        if (inView) {
+            if (!card.classList.contains('show')) {
+                card.style.transitionDelay = `${index * 60}ms`;
+                card.classList.add('show');
+            }
+        } else if (rect.bottom < 0 || rect.top > window.innerHeight) {
+            card.classList.remove('show');
+        }
     });
-  </script>
+}
 
-  <script>
-    window.SUPABASE_URL = "https://ljqrilfumxxkuorvcvfm.supabase.co";
-    window.SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxqcXJpbGZ1bXh4a3VvcnZjdmZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ0MjA0MzgsImV4cCI6MjA5OTk5NjQzOH0.lYGmQsjwmIWZX9RVSUjZLmuLiyi9JEbTvoQmSgoq1z8";
-  </script>
+function handleScroll() {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            revealCards();
+            ticking = false;
+        });
+        ticking = true;
+    }
+}
+
+window.addEventListener('scroll', handleScroll, { passive: true });
+window.addEventListener('resize', handleScroll);
+
+const deviceCanEdit = userRole === "editor" && (isDeviceAuthorized() || authorizeCurrentDevice());
+
+if (userRole === "editor" && editorPanel) {
+    if (deviceCanEdit) {
+        editorPanel.classList.remove("hidden");
+    } else {
+        editorPanel.classList.add("hidden");
+    }
+}
+
+function logout() {
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("userRole");
+    window.location.href = landingPage;
+}
+
+function escapeHtml(text) {
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;");
+}
+
+function getDirectoryData() {
+    return {
+        title: "Lapburn Spanaxeess",
+        people: [
+            {
+                name: "Ayan Saraf",
+                role: "The Manager of B.P. International",
+                bio: "Ayan is the manager and leads the organization with clarity and direction."
+            },
+            {
+                name: "Vihaan Revelli",
+                role: "Assistant Manager",
+                bio: "Vihaan is the assistant manager and helps Ayan manage the organization effictively."
+            },
+            {
+                name: "Neo Kang",
+                role: "Director of Finance",
+                bio: "Neo oversees the financial branch of Lapburn Spanaxeess and ensures that it is running smoothly financially."
+            },
+            {
+                name: "Lawrence Barat",
+                role: "Manager of LS Committee",
+                bio: "Lawrence manages the LS committee; he tracks the committee and reports to Ayan who is being great and who is being poop."
+            }
+        ]
+    };
+}
+
+async function ensureSharedBlobUrl(dataToStore = null) {
+    const storedUrl = localStorage.getItem(SHARED_BLOB_KEY);
+    if (storedUrl) {
+        window.SHARED_BLOB_URL = storedUrl;
+        return storedUrl;
+    }
+
+    if (window.SHARED_BLOB_URL) {
+        try {
+            const response = await fetch(window.SHARED_BLOB_URL, { method: "GET" });
+            if (response.ok) {
+                localStorage.setItem(SHARED_BLOB_KEY, window.SHARED_BLOB_URL);
+                return window.SHARED_BLOB_URL;
+            }
+        } catch (error) {
+            console.warn("Current shared blob URL is not reachable:", error);
+        }
+    }
+
+    try {
+        const createResponse = await fetch(SHARED_BLOB_CREATE_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dataToStore || getDirectoryData())
+        });
+
+        if (createResponse.ok) {
+            const createdUrl = createResponse.headers.get("Location") || createResponse.headers.get("location") || createResponse.url;
+            if (createdUrl) {
+                window.SHARED_BLOB_URL = createdUrl;
+                localStorage.setItem(SHARED_BLOB_KEY, createdUrl);
+                return createdUrl;
+            }
+        }
+    } catch (error) {
+        console.warn("Could not create a shared blob:", error);
+    }
+
+    return window.SHARED_BLOB_URL || null;
+}
+
+async function saveDirectoryData(data) {
+    if (!isDeviceAuthorized()) {
+        alert("Editing is restricted to the owner device.");
+        return false;
+    }
+
+    const blobUrl = await ensureSharedBlobUrl(data);
+    if (!blobUrl) {
+        setSyncStatus("Remote sharing is unavailable right now.", "error");
+        return false;
+    }
+
+    try {
+        const response = await fetch(blobUrl, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            throw new Error(`Remote save failed: ${response.status}`);
+        }
+
+        localStorage.setItem(SHARED_BLOB_KEY, blobUrl);
+        window.SHARED_BLOB_URL = blobUrl;
+        setSyncStatus("Saved and shared remotely.", "success");
+        return true;
+    } catch (error) {
+        console.warn("Could not save remotely:", error);
+        setSyncStatus("Saved locally, but remote sharing is unavailable.", "error");
+        return false;
+    }
+}
+
+async function loadDirectoryData() {
+    const fallbackData = getDirectoryData();
+
+    try {
+        const blobUrl = await ensureSharedBlobUrl(fallbackData);
+        if (!blobUrl) {
+            throw new Error("No shared blob URL available.");
+        }
+
+        const response = await fetch(blobUrl, { method: "GET" });
+        if (!response.ok) {
+            throw new Error(`Remote load failed: ${response.status}`);
+        }
+
+        const remoteData = await response.json();
+        if (remoteData && typeof remoteData === "object") {
+            setSyncStatus("Loaded the latest shared directory.", "success");
+            return remoteData;
+        }
+    } catch (error) {
+        console.warn("Could not load remotely:", error);
+    }
+
+    setSyncStatus("Using the local copy because remote sharing is unavailable.", "error");
+    return fallbackData;
+}
+
+function showDirectoryView() {
+    directoryView.classList.remove("hidden");
+    profileView.classList.add("hidden");
+    directoryView.style.opacity = "0";
+    setTimeout(() => {
+        directoryView.style.transition = "opacity 0.35s ease";
+        directoryView.style.opacity = "1";
+    }, 10);
+}
+
+function showProfileView(person) {
+    profileName.textContent = person.name;
+    profileRole.textContent = person.role;
+    profileBio.textContent = person.bio || "";
+    directoryView.classList.add("hidden");
+    profileView.classList.remove("hidden");
+    profileView.style.opacity = "0";
+    setTimeout(() => {
+        profileView.style.transition = "opacity 0.35s ease";
+        profileView.style.opacity = "1";
+    }, 10);
+}
+
+function renderDirectory(data) {
+    currentDirectoryData = data;
+
+    if (pageTitle) {
+        pageTitle.textContent = data.title;
+    }
+    if (titleInput) {
+        titleInput.value = data.title;
+    }
+
+    if (directoryList) {
+        directoryList.innerHTML = data.people.map((person, index) => `
+            <div class="card" data-index="${index}">
+                <h2>${escapeHtml(person.name)}</h2>
+                <div class="role">${escapeHtml(person.role)}</div>
+            </div>
+        `).join("");
+    }
+
+    requestAnimationFrame(revealCards);
+}
+
+function setupEditor(data) {
+    currentDirectoryData = data;
+
+    if (peopleEditor) {
+        peopleEditor.innerHTML = data.people.map((person) => `
+            <div class="row">
+                <label>Name</label>
+                <input class="nameInput" type="text" value="${escapeHtml(person.name)}" />
+                <label>Role</label>
+                <input class="roleInput" type="text" value="${escapeHtml(person.role)}" />
+                <label>Bio</label>
+                <textarea class="bioInput">${escapeHtml(person.bio || "")}</textarea>
+                <button type="button" class="delete-btn">Delete Employee</button>
+            </div>
+        `).join("");
+    }
+}
+
+async function loadPage() {
+    const data = await loadDirectoryData();
+    const effectiveData = data && data.title ? data : getDirectoryData();
+    renderDirectory(effectiveData);
+    setupEditor(effectiveData);
+    showDirectoryView();
+}
+
+if (homeBtn) {
+    homeBtn.addEventListener("click", showDirectoryView);
+}
+
+directoryList.addEventListener("click", function (event) {
+    const card = event.target.closest(".card");
+    if (!card) return;
+
+    const data = currentDirectoryData || getDirectoryData();
+    const index = Number(card.getAttribute("data-index"));
+    if (data.people[index]) {
+        showProfileView(data.people[index]);
+    }
+});
+
+if (userRole === "editor") {
+    if (addPersonBtn) {
+        addPersonBtn.addEventListener("click", function () {
+            if (peopleEditor) {
+                peopleEditor.insertAdjacentHTML("beforeend", `
+                    <div class="row">
+                        <label>Name</label>
+                        <input class="nameInput" type="text" placeholder="Employee name" />
+                        <label>Role</label>
+                        <input class="roleInput" type="text" placeholder="Employee role" />
+                        <label>Bio</label>
+                        <textarea class="bioInput" placeholder="Employee bio"></textarea>
+                        <button type="button" class="delete-btn">Delete Employee</button>
+                    </div>
+                `);
+            }
+        });
+    }
+
+    if (saveBtn) {
+        saveBtn.addEventListener("click", async function () {
+            const data = {
+                title: titleInput.value.trim() || "Lapburn Spanaxeess",
+                people: Array.from(peopleEditor.querySelectorAll('.row')).map(row => ({
+                    name: row.querySelector('.nameInput').value.trim() || "Unknown",
+                    role: row.querySelector('.roleInput').value.trim() || "Role",
+                    bio: row.querySelector('.bioInput').value.trim() || ""
+                }))
+            };
+
+            const saved = await saveDirectoryData(data);
+            if (!saved) return;
+
+            renderDirectory(data);
+            setupEditor(data);
+        });
+    }
+
+    peopleEditor.addEventListener("click", function (event) {
+        if (event.target.classList.contains("delete-btn")) {
+            event.target.closest('.row').remove();
+        }
+    });
+}
+
+loadPage();
+
+</script>
+
 </body>
 </html>
